@@ -1,0 +1,25 @@
+import { Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { AddBookPage } from "./pages/AddBookPage";
+import { ConfirmBookDetailsPage } from "./pages/ConfirmBookDetailsPage";
+import { MyShelfPage } from "./pages/MyShelfPage";
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/livros/adicionar" element={<AddBookPage />} />
+      <Route
+        path="/livros/confirmar-detalhes"
+        element={<ConfirmBookDetailsPage />}
+      />
+      <Route path="/minha-estante" element={<MyShelfPage />} />{" "}
+    </Routes>
+  );
+}
+
+export default App;
