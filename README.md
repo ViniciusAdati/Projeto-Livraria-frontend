@@ -1,69 +1,40 @@
-# React + TypeScript + Vite
+# Projeto Interface: Sistema de Troca de Livros (Front-End)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface de usuário (UI) construída em React para consumir a API de Troca de Livros, como parte do projeto da disciplina de Web 2.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **React 18**
+* **Vite** (Build tool)
+* **TypeScript**
+* **React Router DOM** (Para gerenciamento de rotas/páginas)
+* **React Context API** (Para gerenciamento de estado global de Autenticação e Socket)
+* **Axios** (Para chamadas à API REST)
+* **Socket.io-Client** (Para conexão com o chat em tempo real)
+* **Swiper.js** (Para os carrosséis da Homepage)
+* **React-Icons**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Configuração e Inicialização
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. Pré-requisitos (Back-End)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Este projeto é **apenas** a interface e depende 100% do servidor Back-end (`Backend-WEB2-PROJETO`).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  O servidor Back-end **DEVE** estar rodando (na porta `3002`, conforme configurado).
+2.  O arquivo `src/services/api.ts` (deste projeto) está configurado para apontar para a `baseURL`: `http://localhost:3002/api`.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Instalação e Execução
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  Abra um **segundo terminal** (separado do back-end).
+2.  Entre nesta pasta do front-end.
+3.  Instale todas as dependências:
+    ```bash
+    npm install
+    ```
+4.  Execute o servidor de desenvolvimento (Vite):
+    ```bash
+    npm run dev
+    ```
+5.  O Vite iniciará o site. Abra o navegador no endereço local fornecido (geralmente `http://localhost:5173`).
