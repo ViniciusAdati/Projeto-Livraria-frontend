@@ -5,6 +5,8 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { AddBookPage } from "./pages/AddBookPage";
 import { ConfirmBookDetailsPage } from "./pages/ConfirmBookDetailsPage";
 import { MyShelfPage } from "./pages/MyShelfPage";
+import { UserProfilePage } from "./pages/UserProfilePage";
+import { ChatPage } from "./pages/ChatPage";
 
 function App() {
   return (
@@ -17,7 +19,10 @@ function App() {
         path="/livros/confirmar-detalhes"
         element={<ConfirmBookDetailsPage />}
       />
-      <Route path="/minha-estante" element={<MyShelfPage />} />{" "}
+      <Route path="/minha-estante" element={<MyShelfPage />} />
+      <Route path="/perfil/:id" element={<UserProfilePage />} />
+
+      <Route path="/chat/:negociacaoId" element={<ChatPage />} />
     </Routes>
   );
 }

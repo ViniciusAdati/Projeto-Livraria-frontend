@@ -32,7 +32,7 @@ export function CommunityCarousel() {
   if (loading) {
     return (
       <div className="carousel-wrapper">
-        <h2 className="carousel-title">HQs</h2>
+        <h2 className="carousel-title">Livro</h2>
         <p style={{ textAlign: "center", padding: "2rem" }}>
           Carregando livros da comunidade...
         </p>
@@ -43,7 +43,7 @@ export function CommunityCarousel() {
   if (error) {
     return (
       <div className="carousel-wrapper">
-        <h2 className="carousel-title">HQs</h2>
+        <h2 className="carousel-title">Livro</h2>
         <p style={{ textAlign: "center", padding: "2rem", color: "red" }}>
           Erro ao carregar: {error}
         </p>
@@ -53,7 +53,7 @@ export function CommunityCarousel() {
 
   return (
     <div className="carousel-wrapper">
-      <h2 className="carousel-title">HQs</h2>
+      <h2 className="carousel-title">Livro</h2>
 
       <Swiper
         modules={[Pagination]}
