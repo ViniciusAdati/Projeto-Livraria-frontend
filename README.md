@@ -38,3 +38,6 @@ Este projeto é **apenas** a interface e depende 100% do servidor Back-end (`Bac
     npm run dev
     ```
 5.  O Vite iniciará o site. Abra o navegador no endereço local fornecido (geralmente `http://localhost:5173`).
+
+<img width="1872" height="917" alt="image" src="https://github.com/user-attachments/assets/29825745-dd4d-495d-a51d-bd595dd89c26" />
+
