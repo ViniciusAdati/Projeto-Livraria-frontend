@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/Navbar";
-import { getMyBooks } from "../services/inventoryService";
+import { getMyBooks, deleteMyBook } from "../services/inventoryService";
 import type { IBookInventory } from "../services/inventoryService";
+import { FaTimes } from "react-icons/fa";
+
 import "../components/CommunityList.css";
 import "../components/CommunityCarousel.css";
 
@@ -25,26 +27,26 @@ export function MyShelfPage() {
     loadMyData();
   }, []);
 
-  const handleRemoveBook = (bookId: number, bookTitle: string) => {
+  const handleRemoveBook = async (bookId: number, bookTitle: string) => {
     if (
       window.confirm(
         `Tem certeza que deseja remover "${bookTitle}" da sua estante?`
       )
     ) {
-      // Em uma implementação real, você chamaria:
-      // await inventoryService.deleteBook(bookId);
+      try {
+        const response = await deleteMyBook(bookId);
 
-      setMyBooks((prevBooks) =>
-        prevBooks.filter((book) => book.inventario_id !== bookId)
-      );
+        setMyBooks((prevBooks) =>
+          prevBooks.filter((book) => book.inventario_id !== bookId)
+        );
 
-      console.log(
-        `(Simulação) Deletando livro com ID (do inventário): ${bookId}`
-      );
-      alert("Livro removido (simulação)!");
+        console.log(response.message);
+        alert("Livro removido com sucesso!");
+      } catch (err: any) {
+        alert(`Erro ao remover: ${err.message}`);
+      }
     }
   };
-
   const renderContent = () => {
     if (loading) {
       return (
@@ -53,7 +55,6 @@ export function MyShelfPage() {
         </p>
       );
     }
-
     if (error) {
       return (
         <p style={{ textAlign: "center", padding: "2rem", color: "red" }}>
@@ -61,7 +62,6 @@ export function MyShelfPage() {
         </p>
       );
     }
-
     if (myBooks.length === 0) {
       return (
         <p style={{ textAlign: "center", padding: "2rem" }}>
@@ -77,6 +77,13 @@ export function MyShelfPage() {
       >
         {myBooks.map((book) => (
           <div key={book.inventario_id} className="book-card">
+            <button
+              className="book-card-remove"
+              title="Remover da Estante"
+              onClick={() => handleRemoveBook(book.inventario_id, book.titulo)}
+            >
+              <FaTimes />
+            </button>
             <div className="book-card-image">
               <img src={book.url_capa} alt={book.titulo} />
               <span className="book-card-tag promo">
@@ -86,25 +93,15 @@ export function MyShelfPage() {
             <h3 className="book-card-title">{book.titulo}</h3>
             <div className="book-card-price">
               <span className="new-price">
-                R$ {book.valor_troca.toFixed(2).replace(".", ",")}
+                R${" "}
+                {parseFloat(book.valor_troca.toString())
+                  .toFixed(2)
+                  .replace(".", ",")}
               </span>
             </div>
             <span className="installments">
               Postado por: {book.nome_usuario} (Você)
             </span>
-
-            <button
-              className="auth-button"
-              style={{
-                width: "90%",
-                margin: "1rem auto",
-                fontSize: "0.9rem",
-                backgroundColor: "#e53e3e",
-              }}
-              onClick={() => handleRemoveBook(book.inventario_id, book.titulo)}
-            >
-              Remover da Estante
-            </button>
           </div>
         ))}
       </div>

@@ -10,7 +10,7 @@ export function Navbar() {
   return (
     <nav className="navbar-container">
       <div className="navbar-logo">
-        <Link to="/">LOGO_AQUI</Link>
+        <Link to="/">LOGO</Link>
       </div>
       <div className="navbar-search">
         <input type="text" placeholder="Pesquisa em toda loja..." />
